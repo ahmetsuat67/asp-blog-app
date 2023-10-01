@@ -11,14 +11,16 @@ const authSlice = createSlice({
     token: null,
   },
   reducers: {
+    //! burada her işlem için dinamik bir action oluşturdum
+    //! başlama durumu
     fetchStart: (state) => {
       state.loading = true;
       state.error = false;
     },
+    //! başarılı olma durumu 
     loginSuccess: (state, { payload }) => {
       state.loading = false;
       state.currentUser = payload?.user?.username;
-      state.isAdmin = payload?.user?.is_superuser;
       state.token = payload?.key;
     },
     logoutSuccess: (state) => {
@@ -32,6 +34,7 @@ const authSlice = createSlice({
       state.token = payload?.token;
       state.error = false;
     },
+    //! başarısız olma durumu
     fetchFail: (state) => {
       state.loading = false;
       state.error = true;
